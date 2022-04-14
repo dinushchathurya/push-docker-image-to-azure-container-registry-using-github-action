@@ -41,6 +41,23 @@ jobs:
           context: .
           push: true
           tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
-          # tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/{{ secrets.CONTAINER_USER_NAME }}/${{ env.REGISTRY_OWNER }}.${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: 'production'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+
+    steps:
+    - name: Deploy to Azure Web App
+      id: deploy-to-webapp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'azure-github-container'
+        slot-name: 'production'
+        publish-profile: ${{ secrets.PUBLISH_PROFILE }}
+        images: '${{ env.REGISTRY_OWNER }}.azurecr.io/${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}'
+
   
 
