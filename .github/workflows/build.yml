@@ -50,6 +50,13 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
 
     steps:
+
+    - name: Set environment variable
+      run: echo "RELEASE_VERSION=${GITHUB_REF:11}" >> $GITHUB_ENV
+
+    - name: Test environment variable
+      run: echo ${{ env.RELEASE_VERSION }}
+      
     - name: Deploy to Azure Web App
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
