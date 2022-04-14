@@ -45,6 +45,7 @@ jobs:
           tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
 
   deploy:
+  
     runs-on: ubuntu-latest
     needs: build
     environment:
@@ -68,7 +69,7 @@ jobs:
         publish-profile: ${{ secrets.PUBLISH_PROFILE }}
         images: ${{ env.REGISTRY_OWNER }}.azurecr.io/${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
 
-        
+
 
 
 
