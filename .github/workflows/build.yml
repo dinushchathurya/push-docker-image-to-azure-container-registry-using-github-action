@@ -40,7 +40,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/${{ secrets.CONTAINER_USER_NAME }}/azure-hello-world-app:${{ env.RELEASE_VERSION }}
+          tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
           # tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/{{ secrets.CONTAINER_USER_NAME }}/${{ env.REGISTRY_OWNER }}.${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
   
 
