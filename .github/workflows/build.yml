@@ -24,13 +24,13 @@ jobs:
       - name: Test environment variable
         run: echo ${{ env.RELEASE_VERSION }}
 
-      - name: Check out GitHub repo
+      - name: Check out GitHub Repository
         uses: actions/checkout@v2
 
-      - name: Login to Github Packages
+      - name: Login to Azure Container Registry
         uses: docker/login-action@v1
         with:
-          registry: https://githubaction.azurecr.io/
+          registry: https:// ${{ env.REGISTRY_OWNER }}.azurecr.io/
           username: ${{ secrets.CONTAINER_USER_NAME }}
           password: ${{ secrets.CONTAINER_PASSWORD }}
 
@@ -39,6 +39,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/{{ secrets.CONTAINER_USER_NAME }}/${{ env.REGISTRY_OWNER }}.${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
+          tags: githubaction.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_9c452e11298a4837bf2745b328c516fb }}/githubaction/azure-hello-world-app:${{ env.RELEASE_VERSION }}
+          # tags: ${{ env.REGISTRY_OWNER }}.azurecr.io/{{ secrets.CONTAINER_USER_NAME }}/${{ env.REGISTRY_OWNER }}.${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}
   
 
