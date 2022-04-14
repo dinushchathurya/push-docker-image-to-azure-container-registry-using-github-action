@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy container app to Azure Web App - azure-github-container
 
 on:
@@ -48,4 +45,4 @@ jobs:
         app-name: 'azure-github-container'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_8cec925212294381ac90a27ad6d9b382 }}
-        images: 'githubaction.azurecr.io/azure-hello-world-app:${{ github.sha }}'
+        images: 'githubaction.azurecr.io/${{ secrets.AzureAppService_ContainerUsername_462fc9e71f3a4c41886db925334f0f85 }}/azure-hello-world-app:${{ github.sha }}'
