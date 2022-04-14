@@ -58,6 +58,7 @@ jobs:
         slot-name: 'production'
         publish-profile: ${{ secrets.PUBLISH_PROFILE }}
         images: '${{ env.REGISTRY_OWNER }}.azurecr.io/${{env.IMAGE_NAME}}:${{ env.RELEASE_VERSION }}'
+
         
 
   
