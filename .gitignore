@@ -1,4 +1,4 @@
 node_modules
 npm-debug.log
 .key
-.github/workflows/master_azure-github-container.yml
+master_azure-github-container.yml
